@@ -2,7 +2,7 @@ module cond(
     input [3:0] ifun,
     input [2:0] CC,
     output cnd;
-)
+);
 
 parameter ZF = CC [2];
 parameter SF = CC [1];

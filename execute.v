@@ -6,7 +6,7 @@ module execute(
     input [63:0] valC,
     output [63:0] valE,
     output cnd;
-)
+);
 
 wire [63:0] ALU_A;
 wire [63:0] ALU_B;
@@ -31,10 +31,7 @@ assign ALU_fn = icode == 6 ? ifun : 0;
 
 ALU compute(ALU_A,ALU_B,ALU_fn,valE,cout);
 
-if (icode == 6)
-    set_cc = 1;
-else 
-    set_cc = 0;
+assign set_cc = icode == 6 ? 1 : 0;
 
 assign CC[2] = valE == 0 ? 1 : 0;
 assign CC[1] = valE[63] == 1 ? 1 : 0;

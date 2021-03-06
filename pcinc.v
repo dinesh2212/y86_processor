@@ -3,6 +3,6 @@ module pc_inc(
     input needregid,
     input needvalC,
     output valP;
-)
+);
 
 valP = pc + 10;

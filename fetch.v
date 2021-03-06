@@ -8,7 +8,7 @@ module fetch(
     output needregid,
     output needvalC,
     output instvalid;
-)
+);
 
 icode = inst64 [79:76];
 ifun = inst64 [75:72];
