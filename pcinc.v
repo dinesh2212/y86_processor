@@ -5,4 +5,4 @@ module pc_inc(
     output valP;
 )
 
-valP = pc + 1 + needregid + 8*needvalC;
+valP = pc + 10;
