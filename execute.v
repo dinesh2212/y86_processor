@@ -15,30 +15,19 @@ wire set_cc;
 reg [2:0] CC;
 
 if (icode == 2)
-    ALU_A = valA;
-else if (icode == 6)
-    ALU_A = valA;
-else if (icode == 3)
-    ALU_A = valC;
-else if (icode == 4)
-    ALU_A = valC;
-else if (icode == 5)
-    ALU_A = valC;
-else if (icode == 8)
-    ALU_A = -4;
-else if (icode == 10)
-    ALU_A = -4;
-else if (icode == 9)
-    ALU_A = 4;
-else if (icode == 11)
-    ALU_A = 4;
+assign ALU_A = icode == 2 ? valA : 
+icode == 6 ? valA :
+icode == 3 ? valC :
+icode == 4 ? valC :
+icode == 5 ? valC :
+icode == 8 ? -4 :
+icode == 10 ? -4
+icode == 9 ? 4 :
+icode == 11 ? 4 : 0;
 
 ALU_B = valB;
 
-if(icode == 6)
-    ALU_fn = ifun;
-else
-    ALU_fn = 0;
+assign ALU_fn = icode == 6 ? ifun : 0;
 
 ALU compute(ALU_A,ALU_B,ALU_fn,valE,cout);
 
@@ -47,28 +36,10 @@ if (icode == 6)
 else 
     set_cc = 0;
 
-if (set_cc == 1) begin
-    if (ALU_fn == 0) begin
-        if (cout == 1)
-            CC[3:3] = 1;
-        else
-            CC[3:3] = 0;
-    end
-    else if (ALU_fn == 1) begin
-        if (cout = 1)
-            CC [2:2] = 1;
-        else 
-            CC [2:2] = 0;
-        CC [3:3] = 0;
-    end
-    else begin
-        CC [3:3] = 0;
-        CC [2:2] = 0;
-    end 
-    if(valE == 0)
-        CC [1:1] = 1;
-    else 
-        CC [1:1] = 0;
-end
+assign CC[2] = valE == 0 ? 1 : 0;
+assign CC[1] = valE[63] == 1 ? 1 : 0;
+assign CC[0] = fun == 0 ? 
+((a[63] == b[63]) & valE[63] != a[63]) :
+ifun == 1 ? (a[63] != b[63]) & (b[63] != valE[63]) : 0;
 
 cond cn(ifun,CC,cnd);
