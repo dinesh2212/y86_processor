@@ -6,3 +6,4 @@ module pc_inc(
 );
 
 valP = pc + 10;
+endmodule

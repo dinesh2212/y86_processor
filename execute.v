@@ -40,3 +40,4 @@ assign CC[0] = fun == 0 ?
 ifun == 1 ? (a[63] != b[63]) & (b[63] != valE[63]) : 0;
 
 cond cn(ifun,CC,cnd);
+endmodule

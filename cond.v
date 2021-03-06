@@ -14,3 +14,4 @@ ifun == 2 ? SF ^ OF :
 ifun == 3 ? ZF :
 ifun == 4 ? ~ZF :
 ifun == 5 ? ~(SF ^ OF) : ~(SF ^ OF) & ~ZF ;
+endmodule

@@ -15,3 +15,4 @@ ifun = inst64 [75:72];
 instvalid = 1;
 needs getval(icode,needvalC,needregid);
 align doalign(needvalC,needregid,inst64,rA,rB,valC);
+endmodule
