@@ -1,5 +1,5 @@
 module instmem(
-    input [79:0] pc,
+    input [63:0] pc,
     input clk,
     output [79:0] inst;
 )
