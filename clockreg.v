@@ -6,8 +6,6 @@ module clockreg(out, in, en, res, resval, clk);
     input en, res, clk;
     input [size-1:0] resval;
 
-
-parameter size = 8;
 always @(posedge clk) begin
     if (res)
         out <= resval;
