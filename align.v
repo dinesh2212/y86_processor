@@ -1,14 +1,13 @@
-module align(
-    input needvalC,
-    input needregid,
-    input inst64,
-    output [3:0] rA,
-    output [3:0] rB,
-    output [63:0] valC;
+module align (
+    inst, needregid, rA, rB, valC
 );
+input [79:0] inst;
+output [3:0] rA, rB;
+output [63:0] valC;
+input needregid;
 
-assign rA = needregid ? inst64 [71:68] : 15;
-assign rB = needregid ? inst64 [67:64] : 15;
+assign rA = needregid ? inst[71:68] : 0;
+assign rB = needregid ? inst[67:64] : 0;
 
-assign valC = needregid = inst64 [63:0] : inst64 [71:8];
+assign valC = inst[63:0];
 endmodule
