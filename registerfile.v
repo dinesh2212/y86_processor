@@ -1,14 +1,11 @@
-module registerfile (
-    dstE, dstM, valE, valM, srcA, srcB, valA, valB, res, clk,
-    rax, rcx, rdx, rbx, rsp, rbp, rsi, rdi,
-    r8, r9, r10, r11, r12, r13, r14
-);
-    input [3:0] dstE, dstM, srcA, srcB;
-    input [63:0] valE, valM;
-    output [63:0] valA, valB;
-    input res, clk;
+module registerfile (dstE, dstM, valE, valM, srcA, srcB, valA, valB, clk);
 
-output [63:0] rax, rcx, rdx, rbx, rsp, rbp, rsi, rdi,
+input [3:0] dstE, dstM, srcA, srcB;
+input [63:0] valE, valM;
+output [63:0] valA, valB;
+input res, clk;
+
+wire [63:0] rax, rcx, rdx, rbx, rsp, rbp, rsi, rdi,
 r8, r9, r10, r11, r12, r13, r14;
 
 wire [63:0] rax_dat, rcx_dat, rdx_dat, rbx_dat, rsp_dat, rbp_dat, 
@@ -19,21 +16,21 @@ wire rax_wrt, rcx_wrt, rdx_wrt, rbx_wrt, rsp_wrt, rbp_wrt,
 rsi_wrt, rdi_wrt, r8_wrt, r9_wrt, r10_wrt, r11_wrt, r12_wrt, 
 r13_wrt, r14_wrt;
 
-clockreg # (64) raxreg(rax, rax_dat, rax_wrt, res, 64'b0, clk);
-clockreg # (64) rcxreg(rcx, rcx_dat, rcx_wrt, res, 64'b0, clk);
-clockreg # (64) rdxreg(rdx, rdx_dat, rdx_wrt, res, 64'b0, clk);
-clockreg # (64) rbxreg(rbx, rbx_dat, rbx_wrt, res, 64'b0, clk);
-clockreg # (64) rspreg(rsp, rsp_dat, rsp_wrt, res, 64'b0, clk);
-clockreg # (64) rbpreg(rbp, rbp_dat, rbp_wrt, res, 64'b0, clk);
-clockreg # (64) rsireg(rsi, rsi_dat, rsi_wrt, res, 64'b0, clk);
-clockreg # (64) rdireg(rdi, rdi_dat, rdi_wrt, res, 64'b0, clk);
+clockreg # (64) raxreg(rax, rax_dat, rax_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rcxreg(rcx, rcx_dat, rcx_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rdxreg(rdx, rdx_dat, rdx_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rbxreg(rbx, rbx_dat, rbx_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rspreg(rsp, rsp_dat, rsp_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rbpreg(rbp, rbp_dat, rbp_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rsireg(rsi, rsi_dat, rsi_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) rdireg(rdi, rdi_dat, rdi_wrt, 1'b0, 64'b0, clk);
 clockreg # (64) r8reg(r8, r8_dat, r8_wrt, res, 64'b0, clk);
 clockreg # (64) r9reg(r9, r9_dat, r9_wrt, res, 64'b0, clk);
-clockreg # (64) r10reg(r10, r10_dat, r10_wrt, res, 64'b0, clk);
-clockreg # (64) r11reg(r11, r11_dat, r11_wrt, res, 64'b0, clk);
-clockreg # (64) r12reg(r12, r12_dat, r12_wrt, res, 64'b0, clk);
-clockreg # (64) r13reg(r13, r13_dat, r13_wrt, res, 64'b0, clk);
-clockreg # (64) r14reg(r14, r14_dat, r14_wrt, res, 64'b0, clk);
+clockreg # (64) r10reg(r10, r10_dat, r10_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) r11reg(r11, r11_dat, r11_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) r12reg(r12, r12_dat, r12_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) r13reg(r13, r13_dat, r13_wrt, 1'b0, 64'b0, clk);
+clockreg # (64) r14reg(r14, r14_dat, r14_wrt, 1'b0, 64'b0, clk);
 
 assign valA = srcA == 0 ? rax :
 srcA == 1 ? rcx :
