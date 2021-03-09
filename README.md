@@ -1,2 +1,2 @@
 # y86_processor
-A Y86 processor built and simulated on Verilog HDL
+A 64-bit sequntial design Y86 processor built and simulated on Verilog.
