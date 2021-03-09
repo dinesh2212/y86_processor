@@ -1,12 +1,12 @@
 module cond(
     input [3:0] ifun,
     input [2:0] CC,
-    output cnd;
+    output cnd
 );
 
-parameter ZF = CC [2];
-parameter SF = CC [1];
-parameter OF = CC [0];
+wire ZF = CC [2];
+wire SF = CC [1];
+wire OF = CC [0];
 
 assign cnd = ifun == 0 ? 1 :
 ifun == 1 ? (SF ^ OF) | ZF :
